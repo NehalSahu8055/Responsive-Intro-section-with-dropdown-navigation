@@ -287,8 +287,12 @@ select {
 
 /* animations */
 @keyframes mymove {
-  from {background-color: red;}
-  to {background-color: blue;}
+  from {
+    background-color: red;
+  }
+  to {
+    background-color: blue;
+  }
 }
 @keyframes marquee {
   from {
@@ -355,14 +359,7 @@ select {
     opacity: 1;
   }
 }
-@keyframes blur {
-  0% {
-    filter: blur(10px);
-  }
-  100% {
-    filter: blur(0);
-  }
-}
+
 @keyframes height {
   0% {
     transform: scaleY(0);
@@ -379,6 +376,10 @@ select {
 /*------------------------------------------------ MAIN CODE --------------------------------------------------*/
 /* ----------------------------------------------------------------------------------------------------------- */
 
+
+
+/* ------------------------------------------------------MOBILE-------------------------------------------------------------- */
+
 body {
   min-height: 100vh;
   background: var(--almostWhite);
@@ -391,9 +392,6 @@ body {
 /* -----------------------------HEADINGS---------------------------------- */
 
 /* -----------------------------MAIN CONTAINER---------------------------- */
-
-.main-container {
-}
 
 /* -----------------------------HEADER------------------------------------ */
 
@@ -431,11 +429,23 @@ nav {
   z-index: 22;
 
   background-color: hsla(205, 100%, 50%, 0.302);
-  backdrop-filter: blur(2rem);
-
+  /* backdrop-filter: blur(2rem); */
+  /* -webkit-backdrop-filter: blur(2rem); */
   animation: height 0.4s ease-in-out forwards;
   transform-origin: top center;
 }
+.menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 1px;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(1.5rem);
+  -webkit-backdrop-filter: blur(1.5rem);
+  z-index: -1;
+}
+
 .menu__list {
   padding-top: 2rem;
   gap: 1.3rem;
@@ -479,7 +489,6 @@ nav {
   display: none;
   animation: height 400ms ease-in-out forwards;
   transform-origin: top center;
-  
 }
 
 .drop-down__items a {
@@ -530,7 +539,6 @@ nav {
 .btn-light:hover {
   opacity: 1;
 }
-
 
 /* -----------------------------ABOUT---------------------------- */
 
@@ -611,6 +619,8 @@ footer img {
   max-width: 22%;
 }
 
+
+/* ------------------------------------------------------DESKTOP-------------------------------------------------------------- */
 @media (min-width: 800px) {
   :root {
     /* colors */
@@ -700,18 +710,27 @@ footer img {
   .drop-down {
     border-radius: 0 0 0.4rem 0.4rem;
     background: hsla(205, 100%, 50%, 0.3);
-    backdrop-filter: blur(100px);
-    box-shadow: -1px 8px 12px 0px #00000017;
-    
-    
-  }
-
-
-
-  .btn-dark:hover, .btn-light:hover{
+    /* backdrop-filter: blur(100px); */
+    /* -webkit-backdrop-filter: blur(100px); */
     box-shadow: -1px 8px 12px 0px #00000017;
   }
-  
+
+  .drop-down::before {
+    content: "";
+    position: absolute;
+    right: 1px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 0.4rem 0.4rem;
+    backdrop-filter: blur(1.5rem);
+    -webkit-backdrop-filter: blur(1.5rem);
+    z-index: -1;
+  }
+
+  .btn-dark:hover,
+  .btn-light:hover {
+    box-shadow: -1px 8px 12px 0px #00000017;
+  }
 
   .drop-down.active {
     padding: 1.5rem;
@@ -775,6 +794,4 @@ footer img {
   .drop2.active {
     text-align: left;
   }
-  
- 
 }
